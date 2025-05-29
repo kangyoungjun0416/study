@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{width:1000px;border: solid 2px black;
+            display: flex; flex-wrap: wrap;}
+        #color{display: flex; margin: 5px 10px;}
+        
+        #box>div{width:10px;height:10px;border: solid 1px black; box-sizing: border-box;}
+        #color>div{width:100px;height:30px;border: solid 2px black; text-align: center;
+                color: yellow;}
+        .red{background-color: red;}
+        .green{background-color: green;}
+        .blue{background-color: blue;}
+        .black{background-color: black;}
+    </style>
+    <script>
+        let mouseDown = 0;
+        let color_g, text_g; // 전역 변수
+        // 웹페이지 메모리 로드 후 초기화 할 내용을 담은 함수
+        init = () =>{
+            var cbox = document.querySelectorAll('#color>div'); //색칠할 색 상자
+            var tbox = document.querySelectorAll('#box>div'); //색칠할 상자들들
+        for(let i = 0; i<5000; i++) {
+            var box = document.querySelector('#box');
+            let el = document.createElement('div');
+            box.appendChild(el);
+        }
+        var sbox = document.querySelectorAll('#box>div');
+        for(let i=0; i<sbox.length; i++) {
+            sbox[i].addEventListener('mousedown', ()=>{mouseDown=1});
+            sbox[i].addEventListener('mouseup', ()=> {mouseDown=0});
+            sbox[i].addEventListener('mousemove', function(){
+                if(mouseDown == 1) this.style.backgroundColor= color_g;
+            });
+        }
+        
+        // 색칠할 색상을 선택하기 위한 이벤트 등록
+           for(var i=0;i<cbox.length;i++){
+                cbox[i].addEventListener('click',function(){saveColor(this.innerHTML)});
+
+                //색칠할 색을 담은 상자의 배경색 설정(class 이용)
+                switch(i){
+                    case 0: cbox[i].classList.add('red');break; //첫번째 상자
+                    case 1: cbox[i].classList.add('green');break; //두번째 상자
+                    case 2: cbox[i].classList.add('blue');break;//세번째 상자자
+                    case 3: cbox[i].classList.add('black'); //네번째 상자자
+                }
+            }  
+        //선택된 상자의 배경색  변경을 위한 이벤트 등록
+           for(var i=0;i<tbox.length;i++){
+            tbox[i].addEventListener('click',function(){changeColor(this)});
+           }
+
+        }
+        // 웹페이지 메모리 로드후에 작동하는 이벤트 등록
+        window.addEventListener('load',init);
+        //인수로 받은 상자(obj)의 배경색과 내용을 변경하는 함수
+        changeColor = (obj) =>{
+            obj.style.backgroundColor = color_g ; // 배경색 변경
+            obj.innerHTML = text_g ; // 상자 내용 변경
+        }
+        // 선택한 상자의 색을 전역 변수에 저장
+        saveColor = (c) =>{
+            color_g = c; //선택한 색 저장
+            text_g = `*${c}*`; //변경항 상자의 내용을 저장장
+        }
+    </script>
+</head>
+<body>
+    <div id="box"> <!--색칠할 상자-->
+        
+    </div>
+    
+    <div id="color"> <!-- 선택할 색상이 들어 있는 상자 -->
+        <div>red</div>
+        <div>green</div>
+        <div>blue</div>
+        <div>black</div>
+    </div>
+</body>
+</html>

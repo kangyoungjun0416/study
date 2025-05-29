@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #tbox{border: solid 1px black;
+              width: 300px; height: 200px;}
+        #cbox{width: 300px; height: 30px;
+              display: flex;}    
+        #cbox>div{border: solid 1px blue;
+                  width: 100px; height: 30px;
+                  text-align: center;
+                  color: yellow;}
+            
+        #cbox>div:nth-child(1){background-color: red;}
+        #cbox>div:nth-child(2){background-color: green;}
+        #cbox>div:nth-child(3){background-color: blue;}
+    </style>
+    <script>
+        let changeColor = (obj) => {
+            let tbox = document.querySelector('#tbox')
+            tbox.style.backgroundColor = obj.innerHTML;
+            tbox.textContent = obj.innerHTML;
+            //tbox.innerText = obj.innerHTML;
+            //tbox.innerHTML = obj.innerHTML;
+
+        }
+        window.addEventListener('load', () => {
+            var cb = document.querySelectorAll('#cbox>div');
+            for(var i=0; i<cb.length; i++){
+                cb[i].addEventListener('click', function(){
+                    changeColor(this);
+                });
+            }
+            });
+    </script>
+</head>
+<body>
+    <div id="tbox"></div>
+    <div id="cbox">
+        <div>red</div>
+        <div>green</div>
+        <div>blue</div>
+    </div>
+</body>
+</html>

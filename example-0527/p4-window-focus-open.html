@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The Window Object</h1>
+<h2>The focus() Method</h2>
+
+<!-- 설명 텍스트 -->
+<p>Click the button to open a new window, and set focus to it.</p>
+
+<!-- 버튼을 누르면 아래 JavaScript 함수가 실행됨 -->
+<button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+  // 새 창을 엶 (빈 창, 가로 200px, 세로 100px)
+  const myWindow = window.open("", "", "width=200,height=100");
+
+  // 새 창으로 포커스를 이동시킴 (강제로 활성화)
+  myWindow.focus();
+}
+</script>
+
+</body>
+</html>

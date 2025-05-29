@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #result{color:red}
+    </style>
+  </head>
+<body>
+
+Select a fruit and click the button:
+<select id="mySelect">
+  <option value="1">Apple</option>
+  <option value="2">Orange</option>
+  <option value="3">Pineapple</option>
+  <option value="4">Banana</option>
+</select>
+
+<button type="button" onclick="myFunction()">Display index</button>
+<br><br>
+<div id="result"></div>
+<script>
+function myFunction() {
+    let result=document.querySelector("#result");
+    var y = document.getElementById("mySelect").options;
+    var x = document.getElementById("mySelect").selectedIndex;
+  result.innerHTML = "Index: " + y[x].index + " is " + y[x].text + " value :" + y[x].value;
+  //alert("Index: " + y[x].index + " is " + y[x].text + " value :" + y[x].value);
+}
+</script>
+
+</body>
+</html>

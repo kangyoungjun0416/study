@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>랜덤 추첨</title>
+  <style>
+    /* 기본 설정 */
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fdfcfb, #e2d1c3); /* 파스텔 배경 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    /* 전체 카드 UI */
+    .card {
+      background-color: #ffffffee;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+      max-width: 450px;
+      width: 100%;
+    }
+
+    /* 라벨 스타일 */
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* 입력창 스타일 */
+    input {
+      width: 48%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 15px;
+      background-color: #fafafa;
+    }
+
+    /* 숫자 범위 두 칸 배치 */
+    .range-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 4%;
+    }
+
+    /* 버튼 스타일 */
+    button {
+      width: 100%;
+      background-color: #ffc8c8;
+      color: #333;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ffaaaa;
+    }
+
+    /* 아코디언 하나의 세트 박스 */
+    .accordion-item {
+      background: #fff6f6;
+      border-radius: 10px;
+      margin-top: 15px;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+    }
+
+    /* 아코디언 제목(클릭 영역) */
+    .accordion-header {
+      padding: 12px 15px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 10px;
+      background-color: #ffecec;
+      transition: background-color 0.2s;
+    }
+
+    .accordion-header:hover {
+      background-color: #ffdada;
+    }
+
+    /* 아코디언 내용 (숫자들) - 처음엔 숨김 */
+    .accordion-content {
+      display: none;
+      padding: 10px 15px 15px;
+      animation: fadeSlide 0.3s ease forwards;
+    }
+
+    /* 아코디언 열렸을 때 보여주기 */
+    .accordion-content.show {
+      display: block;
+    }
+
+    /* 열릴 때 부드럽게 애니메이션 */
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <!-- 숫자 범위 -->
+    <label>숫자 범위 (예: 1~10)</label>
+    <div class="range-group">
+      <input type="number" id="min" value="1" min="1" placeholder="최소값" />
+      <input type="number" id="max" value="10" min="1" placeholder="최대값" />
+    </div>
+
+    <!-- 정수 갯수 -->
+    <label>선택할 정수 갯수 (3~7)</label>
+    <input type="number" id="pickCount" value="3" min="3" max="7" />
+
+    <!-- 세트 개수 -->
+    <label>결과 Set 수 (1~10)</label>
+    <input type="number" id="setCount" value="5" min="1" max="10" />
+
+    <!-- 버튼 -->
+    <button onclick="drawNumbers()">랜덤 추첨하기</button>
+
+    <!-- 결과 출력 영역 -->
+    <div id="result"></div>
+  </div>
+
+  <script>
+    // 숫자 추첨 및 결과 출력
+    function drawNumbers() {
+      // 입력값 읽기
+      const min = parseInt(document.getElementById('min').value);
+      const max = parseInt(document.getElementById('max').value);
+      const pickCount = parseInt(document.getElementById('pickCount').value);
+      const setCount = parseInt(document.getElementById('setCount').value);
+      const resultDiv = document.getElementById("result");
+
+      // 유효성 검사
+      if (min > max || pickCount < 1 || pickCount > (max - min + 1)) {
+        resultDiv.innerHTML = `⚠️ 입력값이 올바르지 않습니다.`;
+        return;
+      }
+
+      resultDiv.innerHTML = ""; // 결과 초기화
+
+      // setCount만큼 반복
+      for (let i = 1; i <= setCount; i++) {
+        const picked = [];
+
+        // pickCount만큼 숫자 뽑기
+        for (let j = 0; j < pickCount; j++) {
+          const rand = Math.floor(Math.random() * (max - min + 1)) + min;
+          picked.push(rand);
+        }
+
+        // 아코디언 생성
+        const item = document.createElement("div");
+        item.className = "accordion-item";
+
+        const header = document.createElement("div");
+        header.className = "accordion-header";
+        header.textContent = `set ${i}`;
+
+        const content = document.createElement("div");
+        content.className = "accordion-content";
+        content.textContent = picked.join(" ");
+
+        // 클릭하면 열리고 닫힘 toggle
+        header.addEventListener("click", () => {
+          content.classList.toggle("show");
+        });
+
+        item.appendChild(header);
+        item.appendChild(content);
+        resultDiv.appendChild(item);
+      }
+    }
+  </script>
+
+</body>
+</html>

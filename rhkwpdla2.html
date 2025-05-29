@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파스텔 핸드폰 알람 시계</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        body {
+            background: linear-gradient(135deg, #fceabb, #f8b500);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .phone-frame {
+            background: #333;
+            width: 320px;
+            height: 640px;
+            border-radius: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .speaker {
+            width: 60px;
+            height: 6px;
+            background: #222;
+            border-radius: 3px;
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .home-button {
+            width: 50px;
+            height: 50px;
+            background: #222;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .screen {
+            background: #fff7f0;
+            width: 280px;
+            height: 540px;
+            border-radius: 30px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        button {
+            margin: 8px;
+            padding: 10px 22px;
+            font-size: 16px;
+            border: none;
+            background-color: #ffb6b9;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(255, 182, 185, 0.5);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #ff8a8a;
+            transform: scale(1.05);
+        }
+
+        #alarmStatus {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff6f61;
+            min-height: 30px;
+            animation: fadeIn 1s ease;
+        }
+
+        .shake {
+            animation: shake 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="speaker"></div>
+        <div class="screen" id="alarmCard">
+            <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" alt="시계">
+            <h1>⏰ 알람 시계</h1>
+            <button id="startAlarm">알람 시작</button>
+            <button id="stopAlarm">알람 해제</button>
+            <div id="alarmStatus"></div>
+        </div>
+        <div class="home-button"></div>
+    </div>
+
+    <script>
+        const alarmCard = document.getElementById('alarmCard');
+
+        function animateStatus() {
+            const status = document.getElementById('alarmStatus');
+            status.style.animation = 'none';
+            status.offsetHeight;
+            status.style.animation = null;
+        }
+
+        function triggerShake() {
+            alarmCard.classList.add('shake');
+            setTimeout(() => {
+                alarmCard.classList.remove('shake');
+            }, 500);
+        }
+
+        let alarmCount = 0;
+        let alarmInterval = null;
+
+        document.getElementById('startAlarm').addEventListener('click', () => {
+            if (alarmInterval) return;
+            alarmCount = 0;
+            document.getElementById('alarmStatus').innerText = "🔔 알람이 시작되었습니다!";
+            animateStatus();
+            triggerShake();
+            alarmInterval = setInterval(() => {
+                if (alarmCount < 3) {
+                    document.getElementById('alarmStatus').innerText = `⏰ 알람 울림 (${alarmCount + 1}/3회)`;
+                    animateStatus();
+                    triggerShake();
+                    alarmCount++;
+                } else {
+                    clearInterval(alarmInterval);
+                    alarmInterval = null;
+                    document.getElementById('alarmStatus').innerText = "✅ 알람이 완료되었습니다.";
+                    animateStatus();
+                }
+            }, 10000);
+        });
+
+        document.getElementById('stopAlarm').addEventListener('click', () => {
+            if (alarmInterval) {
+                clearInterval(alarmInterval);
+                alarmInterval = null;
+                document.getElementById('alarmStatus').innerText = "🔕 알람이 중지되었습니다.";
+                animateStatus();
+            } else {
+                document.getElementById('alarmStatus').innerText = "❌ 알람이 실행 중이 아닙니다.";
+                animateStatus();
+            }
+        });
+    </script>
+</body>
+</html>

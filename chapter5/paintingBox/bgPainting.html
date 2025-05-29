@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #color{display: flex;}
+        /*색칠할 상자(div)를 위한 스타일 */
+        #box{width:300px;height:100px;border: solid 2px black;
+             font-size:30px;text-align: center ;line-height: 100px;color: yellow;}
+        /*색칠할 색상을 저장하는 상자(div)를 위한 스타일 */
+        #color>div{width:100px;height:30px;border: solid 1px;text-align: center;
+                color: yellow;}
+
+        .red{background-color: red;} /* 배경을 red로 만드는 class */ 
+        .green{background-color: green;} /* 배경을 green으로 만드는 class */ 
+        .blue{background-color: blue;} /* 배경을 blue로 만드는 class */ 
+    </style>
+    <script>
+        // 초기에 1회 실행되는 init 화살표 함수로 
+        // 초기화가 필요한 내용은 여기에 작성
+        init = () =>{  
+            
+            // cbox는 색상을 갖고 있는 div태그들을 저장(3개)
+            var cbox = document.querySelectorAll('#color>div');//색칠할 색상을 갖고 있는 상자 집합
+            
+            //위의(cbox 배열) 색상상자를 클릭할때 작동하는 이벤트 설정
+            for(var i=0;i<cbox.length;i++){ //cbox.length : 색상상자 갯수
+                cbox[i].addEventListener('click',function(){  //각 색상상자를 클릭할때 이벤트 설정
+                    cbg(this.innerHTML); //색상상자를 클릭할때 실행할 동작 지시->현재상자의 text(색상)를 cbg 함수에게 전달달
+                }); // 익명함수의 끝
+                
+                switch(i){  //색상을 갖고 있는 상자의 배경색을 class를 이용하여 설정 
+                    case 0: cbox[i].classList.add('red');break; //첫번째 상자의 배경색 지정을 위해 "red" class 추가
+                    case 1: cbox[i].classList.add('green');break; //두번째 상자의 배경색 지정을 위해 "green" class 추가
+                    case 2: cbox[i].classList.add('blue');break; //세번째 상자의 배경색 지정을 위해 "blue" class 추가
+                }  //end od "switch"
+            } //end of "for"
+            
+        } //end of "init" function
+        
+        cbg = (c) =>{  //인자값 C(색상)을 받아서 "#box" 상자의 배경색을 변경
+        document.querySelector('#box').style.backgroundColor = c; //색칠할 상자(#box)의 배경색을 링수값으로 설정
+        document.querySelector('#box').innerHTML = `*${c}*`; //색칠한 상자(#box)의 배경색을 상자 내용으로 설정
+    } //end of "cbg" 
+
+    window.addEventListener('load',init);//웹페이지가 메모리에 로드가 되면 작동하는 이벤트 설정
+    
+    </script>
+</head>
+<body>
+    <div id="box"><!-- 색칠할 상자자-->
+    </div>
+    
+    <div id="color"> <!-- 색칠할 색을 저장하는  상자 -->
+        <div>red</div>
+        <div>green</div>
+        <div>blue</div>
+        <div>black</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>신호등 설명 버전</title>
+  <style>
+    body {
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .traffic-light {
+      width: 120px;
+      height: 320px;
+      background: #333;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 10px #0006;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .light {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #111;
+      opacity: 0.3;
+      transition: 0.3s;
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .on {
+      opacity: 1;
+    }
+
+    .red.on {
+      background: red;
+      box-shadow: 0 0 20px red;
+    }
+
+    .yellow.on {
+      background: yellow;
+      box-shadow: 0 0 20px gold;
+    }
+
+    .green.on {
+      background: limegreen;
+      box-shadow: 0 0 20px limegreen;
+    }
+
+    #message {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      padding: 10px 20px;
+      border: 2px solid #aaa;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 2px 2px 5px #ccc;
+      min-width: 200px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="traffic-light">
+    <div class="light red"></div>
+    <div class="light yellow"></div>
+    <div class="light green"></div>
+  </div>
+
+  <div id="message">정지!</div> <!-- 설명 텍스트 박스 -->
+
+  <script>
+    const lights = document.querySelectorAll('.light');
+    const messageBox = document.getElementById('message');
+
+    const messages = ['정지!', '주의!', '출발!'];
+    let current = 0;
+
+    function updateLight() {
+      lights.forEach(light => light.classList.remove('on'));
+      lights[current].classList.add('on');
+
+      messageBox.textContent = messages[current];
+
+      current = (current + 1) % lights.length;
+    }
+
+    updateLight(); // 초기 상태 설정
+    setInterval(updateLight, 5000); // 5초마다 변경
+  </script>
+</body>
+</html>

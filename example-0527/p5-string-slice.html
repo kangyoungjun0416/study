@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Strings</h1>
+<h2>The slice() Method</h2>
+
+<p>The sliced (extracted) part of the string is:</p>
+<p id="demo"></p>
+
+<script>
+let text = "Apple, Banana, Kiwi";
+let part1 = text.slice(7,13) + "<br>";
+let part2 = text.slice(7) + "<br>";
+let part3 = text.slice(-12) + "<br>";
+let part4 = text.slice(-12,-6) ;
+document.getElementById("demo").innerHTML = part1; 
+document.getElementById("demo").innerHTML += part2; 
+document.getElementById("demo").innerHTML += part3; 
+document.getElementById("demo").innerHTML += part4; 
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<!-- 사용자에게 설명을 보여줌 -->
+<p>Click the button to open a new window called "MsgWindow" with some text.</p>
+
+<!-- 버튼 클릭 시 새 창을 열고 글자를 출력하는 함수 실행 -->
+<button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+  // "p3-setinterval.html" 파일을 새 창으로 열기
+  // 창 이름은 "MsgWindow", 크기는 너비 200px, 높이 1000px
+  var myWindow = window.open("p3-setinterval.html", "MsgWindow", "width=200,height=1000");
+
+  // 새로 연 창 안에 텍스트를 직접 작성함
+  myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>"); 
+}
+</script>
+
+</body>
+</html>

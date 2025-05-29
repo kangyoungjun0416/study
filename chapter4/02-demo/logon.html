@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        #box{border:solid 0px black;
+        width: 200px;
+        display:flex;
+        justify-content: space-around;}
+        #box > div{border:solid 1px blue;}
+        #Sb2 > button{height: 100%;}
+    </style>
+    <script>
+        const chkLogon = () => {
+        var id=document.querySelector("#id");
+        var pwd=document.querySelector("#pwd");
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div id = "box">
+            <div id = "Sb1">
+                <input id="id" type = "text" value="hong">
+                <input id="pwd" type = "password" value="1234">
+            </div>
+            <div id = "Sb2">
+                <button onclick="chkLogon" id="btn">Logon</button>
+
+            </div>
+</body>
+</html>

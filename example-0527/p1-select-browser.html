@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<!-- 사용자에게 브라우저를 선택하라고 안내 -->
+Select a fruit and click the button:
+
+<!-- 드롭다운 목록 (select 요소) -->
+<select id="mySelect">
+  <option value="https://www.bing.com/">Edge</option>       <!-- Bing 사이트 -->
+  <option value="https://www.google.com/">Chrome</option>    <!-- Google 사이트 -->
+  <option value="https://www.naver.com/">Naver</option>      <!-- Naver 사이트 -->
+  <option value="https://www.mozilla.org/ko/">Firefox</option> <!-- Firefox 사이트 -->
+  <option value="https://www.opera.com/ko">Opera</option>    <!-- Opera 사이트 -->
+</select>
+
+<!-- 버튼을 누르면 선택한 브라우저 페이지가 열림 -->
+<button type="button" onclick="myFunction()">Execute Browser</button>
+
+<script>
+function myFunction() {
+    let opt = "width=500,height=700"; 
+    // 새 창의 크기를 지정 (가로 500, 세로 700)
+
+    var y = document.getElementById("mySelect").options; 
+    // select 요소의 모든 옵션 목록을 가져옴
+
+    var x = document.getElementById("mySelect").selectedIndex;
+    // 현재 선택된 옵션의 인덱스를 가져옴
+
+    let http = y[x].value;
+    // 선택된 옵션의 value (즉, 링크 주소)를 가져옴
+
+    let popup = window.open(http, 'newWin', opt);
+    // 새로운 창을 열어서 해당 주소로 이동시킴
+}
+</script>
+
+</body>
+</html>

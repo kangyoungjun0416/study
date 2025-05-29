@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #bigImage{border: solid 1px black;
+                  width: 540px; height:300px;}
+        #sbox{border: solid 1px black;
+              width: 540px; height:60px;}
+        #sbox>img{width:70px; height:50px; margin:2px 1px;}
+        #bigImage>img{width:100%; height:100%; margin:2px;}
+    </style>
+    <script>
+        const init = () =>{
+            for(let i=0;i<10;i++){
+            const sbox = document.querySelector('#sbox');
+            let str=`<img src='images1/thumb/pic${i+1}.png'>`;
+            sbox.insertAdjacentHTML('beforeend',str);           
+        }
+        const s = document.querySelectorAll('#sbox>img');
+        const big = document.querySelector('#bigImage>img');
+        for(let i=0;i<s.length;i++){
+            s[i].addEventListener('click',()=>{
+                let str=s[i].src;
+                str = str.replace('thumb/', ''); 
+                big.src = str;
+
+            });
+        }
+        }
+
+        window.addEventListener('load', init);
+    </script>
+</head>
+<body>
+    <div>
+        <div id="bigImage">
+            <img src="images1/pic1.png" >
+        </div>
+        <div id="sbox">
+
+        </div>
+    </div>
+    <br><br>
+    <div id="desc">
+        구현할내용 <br>
+        1. 작은 이미지는 thumb폴더에 있는 썸네일 배치,...<br>
+        2. 썸네일 이미지 클릭시 큰이미지 상자에 표시<br>
+        3. 초기에 작은 이미지 파일명 지정(배열 또는 파일이름 규칙 이용)<br>
+        4. 시간이 되면 썸네일 이미지 태그도 자바스크립트로 생성후 이미지 파일 지정정<br>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The Window Object</h1>
+<h2>The open() and close() Methods</h2>
+
+<!-- 버튼을 누르면 새 창을 엶 -->
+<button onclick="openWin()">Open "myWindow"</button>
+
+<!-- 버튼을 누르면 열어둔 창을 닫음 -->
+<button onclick="closeWin()">Close "myWindow"</button>
+
+<script>
+let myWindow; // 새 창을 저장할 변수 (전역 변수로 선언)
+
+function openWin() {
+  // 새 창을 엶 (빈 창, 너비 200px, 높이 100px)
+  myWindow = window.open("", "", "width=200,height=100");
+}
+
+function closeWin() {
+  // 열려 있는 창을 닫음
+  myWindow.close();
+}
+</script>
+
+</body>
+</html>

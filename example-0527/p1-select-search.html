@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    // 선택 버튼 클릭 시 실행되는 함수
+    function selectedControl() {
+        const el = document.getElementById('fruit');  
+        // select 태그 가져오기 (과일 목록)
+
+        const len = el.options.length; 
+        // select 안에 있는 옵션 개수 (사과, 딸기, 포도 → 총 3개)
+
+        const str = document.getElementById('searchValue').value; 
+        // 사용자가 입력한 텍스트 박스 값 가져오기
+
+        // 옵션 개수만큼 반복하면서 일치하는 값을 찾음
+        for (let i = 0; i < len; i++) {
+            // 입력한 값이 옵션의 value 값과 같으면
+            if (el.options[i].value == str) {
+                el.options[i].selected = true; // 해당 옵션을 선택 상태로 만듦
+            }
+        }
+    }
+  </script>
+</head>
+
+<body>
+
+<!-- 사용자가 선택할 값을 직접 입력할 입력창 -->
+<input type='text' id='searchValue' placeholder="예: apple">
+
+<!-- 위에서 입력한 값과 일치하는 항목을 선택해주는 버튼 -->
+<input type='button' onclick='selectedControl()' value='선택'>
+
+<!-- 과일 목록이 있는 셀렉트 박스 -->
+<select id='fruit'>
+  <option value='apple'>사과</option>       <!-- value는 apple, 표시되는 글자는 사과 -->
+  <option value='strawberry'>딸기</option>  <!-- value는 strawberry, 글자는 딸기 -->
+  <option value='grape'>포도</option>       <!-- value는 grape, 글자는 포도 -->
+</select>
+
+</body>
+</html>

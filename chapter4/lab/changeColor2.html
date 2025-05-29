@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #tbox{border: solid 1px black;
+              width: 300px; display: flex;
+                }
+        #tbox>div{border: solid 1px black;
+            width: 100px; display: flex; height: 100px;
+            text-align: center;
+            color: yellow;} 
+        #cbox{width: 300px; height: 30px;
+              display: flex; margin-top: 5px;}
+        #cbox>div{border: solid 1px blue;
+                  width: 100px; height: 30px;
+                  text-align: center;
+                  color: yellow;}
+            
+        #cbox>div:nth-child(1){background-color: red;}
+        #cbox>div:nth-child(2){background-color: green;}
+        #cbox>div:nth-child(3){background-color: blue;}
+    </style>
+    <script>
+        let color_g, text_g;
+        let saveColor = (obj) => {
+            color_g = obj.textContent;
+            text_g = `*${obj.textContent}*`;
+        };
+        let changeColor = (obj) => {
+            obj.style.backgroundColor = color_g;
+            obj.textContent = text_g;
+        }
+        window.addEventListener('load', () => {
+            var cb = document.querySelectorAll('#cbox>div');
+            for(var i=0; i<cb.length; i++){
+                cb[i].addEventListener('click', function(){
+                    saveColor(this);
+                });
+            }
+            var tb = document.querySelectorAll('#tbox>div');
+            for(var i=0; i<tb.length; i++){
+                tb[i].addEventListener('click', function(){
+                    changeColor(this);
+                });
+            }
+            });
+    </script>
+</head>
+<body>
+    <div id="tbox">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <div id="cbox">
+        <div>red</div>
+        <div>green</div>
+        <div>blue</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The Window Object</h1>
+<h2>The setInterval() and clearInterval() Methods</h2>
+
+<p id="demo"></p>
+
+<button id="toggleBtn" onclick="toggleTimer()">Stop the time</button>
+
+<script>
+var myInterval = setInterval(myTimer, 1000);
+var isRunning = true;
+
+function myTimer() {
+  const today = new Date();
+  const vote = new Date('2025.06.25');
+  let diff = vote.getTime() - today.getTime();
+  diff = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+  let y = today.getFullYear();
+  let m = today.getMonth() + 1; // ✅ 수정된 부분 (월은 0부터 시작하니까 +1)
+  let d = today.getDate();
+  let day = today.getDay();
+  let h = today.getHours();
+  if (h < 10) h = "0" + h;
+  let min = today.getMinutes();
+  let s = today.getSeconds();
+  if (s < 10) s = "0" + s;
+
+  let dy = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let str1 = `${y}년 ${m}월 ${d}일(${dy[day]}) <br>`;
+  let str2 = `${h} : ${min} : ${s} `;
+
+  document.getElementById("demo").innerHTML = diff + "<br>";
+  document.getElementById("demo").innerHTML += str1 + str2;
+}
+
+function toggleTimer() {
+  const btn = document.getElementById("toggleBtn");
+
+  if (isRunning) {
+    clearInterval(myInterval);
+    btn.innerText = "Start time";
+    isRunning = false; // ✅ if문으로 상태 반전
+  } else {
+    myInterval = setInterval(myTimer, 1000);
+    btn.innerText = "Stop time";
+    isRunning = true; // ✅ if문으로 상태 반전
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- 문자 인코딩 설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 뷰포트 설정 -->
+    <title>Document</title> <!-- 문서 제목 -->
+    <style>
+        #box{width: 300px; border: solid 1px black;} /* box의 너비 300px, 검정 실선 테두리 */
+        #btn{width: 300px; border: solid 1px black; display: flex; justify-content: space-around;} /* btn 영역의 너비 300px, 실선 테두리, 버튼들 간격을 균등 배치 */
+        #displaybutton{height: 50px; border: solid 1px rgb(255, 0, 0); text-align: center; padding: 20px;} /* displaybutton 영역 높이 50px, 빨간색 실선 테두리, 텍스트 중앙 정렬, 20px 여백 */
+    </style>
+    <script>
+       function showName(name, number) { 
+            const dis = document.querySelector('#displaybutton');
+            // 버튼의 텍스트와 두 번째 인자인 number를 함께 표시
+            dis.textContent = `이름: ${name}, 번호: ${number}`;
+        } /* 클릭한 버튼의 텍스트와 번호를 displaybutton에 표시 */
+        function showAlert(){ const dis = document.querySelector('#displaybutton'); alert(dis.innerText); } /* displaybutton의 텍스트를 alert로 표시 */
+    </script>
+</head>
+<body>
+    <div id="box"> <!-- box 영역 시작 -->
+        <div id="btn"> <!-- 버튼 영역 시작 -->
+            <button onclick="showName(this.textContent,111)">버튼1</button> <!-- 버튼1 클릭 시 이름을 displaybutton에 표시 --> <!-- 메소드,함수 showName-->
+            <button onclick="showName(this.textContent)">버튼2</button> <!-- 버튼2 클릭 시 이름을 displaybutton에 표시 --> 
+            <button onclick="showName(this.textContent)">버튼3</button> <!-- 버튼3 클릭 시 이름을 displaybutton에 표시 -->
+        </div> <!-- 버튼 영역 끝 -->
+        <div onclick="showAlert()" id="displaybutton">클릭한 버튼 이름 표시</div> <!-- displaybutton 클릭 시 텍스트 알림 표시 -->
+    </div> <!-- box 영역 끝 -->
+</body>
+</html>
