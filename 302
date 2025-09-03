@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>BGP Practice #302(CSS)</title>
+  <style>
+    /* ================================
+       공통 레이아웃 스타일
+    ================================ */
+    header, main, footer {
+      width: 100%;
+      margin: 0 auto;   /* 화면 가운데 정렬 */
+    }
+
+    /* ================================
+       헤더 영역 스타일
+    ================================ */
+    header {
+      display: flex;                /* 내부 요소 가로 정렬 */
+      align-items: center;          /* 세로 가운데 정렬 */
+      justify-content: space-between; /* 좌/우 공간 배분 */
+      background-color: #ffffff;    /* 배경색 */
+      padding: 5px 0px;             /* 상하좌우 여백 */
+    }
+
+    header img {
+      height: 80px;   /* 메뉴바 높이에 맞춰 이미지 크기 */
+      width: auto;    /* 원본 비율 유지 */
+    }
+
+    /* ================================
+       제목글 스타일
+    ================================ */
+    .shine-text {
+      color: white;
+      font-size: 40px;
+      text-align: center;
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #3399ff, 0 0 10px #3399ff, 0 0 20px #3399ff;
+      }
+      to {
+        text-shadow: 0 0 10px #66ccff, 0 0 20px #66ccff, 0 0 40px #66ccff;
+      }
+    }
+
+    /* ================================
+       네비게이션 메뉴 스타일
+    ================================ */
+    nav ul {
+      list-style: none;   /* 점 제거 */
+      display: flex;      /* 메뉴 가로 정렬 */
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0 15px;     /* 메뉴 항목 사이 간격 */
+    }
+
+    nav ul li a {
+      text-decoration: none; /* 밑줄 제거 */
+      color: black;
+      font-weight: bold;
+    }
+
+    /* ================================
+       로그인 폼 스타일
+    ================================ */
+    .Login-btn {
+      background-color: blue;  /* 파란색 배경 */
+      color: white;            /* 하얀색 글씨 */
+      border: none;
+      padding: 10px 20px;      /* 위아래, 좌우 여백 */
+      font-size: 16px;
+      border-radius: 5px;      /* 모서리 둥글게 */
+      cursor: pointer;         /* 마우스 올리면 커서 변경 */
+    }
+
+    .Login-btn:hover {
+      background-color: darkblue;  /* 마우스 올리면 진한 파랑 */
+    }
+
+    .Login-input {
+      border: 1px solid #ccc;    /* 연한 회색 테두리 */
+      padding: 8px 12px;         /* 안쪽 여백 */
+      border-radius: 8px;        /* 모서리 둥글게 */
+      outline: none;             /* 클릭했을 때 파란 외곽선 제거 */
+      font-size: 14px;           /* 글자 크기 조정 */
+    }
+
+    .Login-input:focus {
+      border-color: #3399ff;    /* 포커스 시 테두리를 파란색으로 */
+      box-shadow: 0 0 5px rgba(51, 153, 255, 0.5); /* 살짝 파란 빛 효과 */
+    }
+
+    /* ================================
+       메인 영역 스타일
+    ================================ */
+    main {
+      text-align: center;
+      padding: 20px;   /* 위아래 여백 */
+    }
+
+    /* ================================
+       푸터 영역 스타일
+    ================================ */
+    footer {
+      background-color: #333;  /* 어두운 배경 */
+      color: #fff;             /* 글자 밝게 */
+      text-align: center;
+      padding: 10px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <img src="./img/yju_Logo.png" alt="영진로고이미지">
+    </div>
+    <div>
+      <h1 class="shine-text">BGP Practice #302</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">대학안내</a></li>
+        <li><a href="#">계열학과</a></li>
+        <li><a href="#">캠퍼스라이프</a></li>
+        <li><a href="#">Pride of YJU</a></li>
+      </ul>
+    </nav>
+    <div>
+      <form class="login-form">
+        <input class="Login-input" type="text" placeholder="아이디">
+        <input class="Login-input" type="password" placeholder="비밀번호">
+        <button class="Login-btn" type="submit">로그인</button>
+        <button type="button">회원가입</button>
+      </form>
+    </div>
+  </header>
+
+  <hr>
+
+  <main>
+    <img src="./img/yju_main1.png" alt="메인 이미지">
+  </main>
+
+  <footer>
+    <h3>COPYRIGHT(C) KDHONG ALL RIGHTS RESERVED</h3>
+  </footer>
+</body>
+</html>
