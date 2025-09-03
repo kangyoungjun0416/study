@@ -1,10 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <title>BGP Practice #303(BS)</title>
+  <!-- 부트스트랩 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* 로고 크기 */
+    .navbar-brand img {
+      height: 40px;   /* 메뉴바 높이에 맞춤 */
+      width: auto;
+    }
 
+    /* 로그인 폼 입력창과 버튼 크기 */
+    .Login-form input {
+      font-size: 14px;
+      padding: 2px 6px;
+      height: 30px;
+    }
+
+    .Login-form button {
+      font-size: 14px;
+      padding: 2px 10px;
+      height: 32px;
+      white-space: nowrap; /* 글자가 줄바뀜되지 않도록 */
+    }
+
+    /* 메인 이미지 반응형 */
+    #mainImage {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* 푸터 스타일 */
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <!-- 로고 -->
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="./img/yjurogo.png" alt="영진로고">
+      </a>
+
+      <!-- 모바일 메뉴 버튼 -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- 메뉴 + 로그인 폼 -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- 왼쪽 메뉴 -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">대학안내</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">계열학과</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">캠퍼스라이프</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Pride of YJU</a></li>
+        </ul>
+
+        <!-- 오른쪽 로그인 폼 -->
+        <form class="d-flex Login-form" role="login">
+          <input class="form-control me-2" type="text" placeholder="아이디" aria-label="아이디">
+          <input class="form-control me-2" type="password" placeholder="비밀번호" aria-label="비밀번호">
+          <button class="btn btn-primary" type="submit">로그인</button>
+          <button class="btn btn-outline-primary" type="button">회원가입</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mt-3 text-center">
+    <img id="mainImage" src="./img/yjuweb.png" alt="메인 이미지" class="img-fluid">
+  </main>
+
+  <footer>
+    <h6>COPYRIGHT(C) KDHONG ALL RIGHTS RESERVED</h6>
+  </footer>
+
+  <!-- 부트스트랩 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- 이미지 로테이션 스크립트 -->
+<script>
+    // 보여줄 이미지 목록
+        const images = [
+            "./img/yjuweb.png",
+            "./img/yjuweb2.png",
+            "./img/yjuweb3.png",
+            "./img/yjuweb4.png",
+           ];
+        
+        let index = 0;
+      	const mainImage = document.getElementById("mainImage");
+      	
+      	// 3초마다 이미지 변경
+      	setInterval(() => {
+      		index = (index+1) % images.length;
+      		mainImage.src = images[index];
+      	}, 3000);
+      </script>
 </body>
 </html>
